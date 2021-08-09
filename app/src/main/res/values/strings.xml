@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Demo App</string>
+    <string name="text_amount">Rs %1$s</string>
+    <string name="desc_thumbnail">Thumbnail Image View</string>
+    <string name="text_loading">Loading....</string>
+    <string name="text_error">Error in Loading data</string>
+    <string name="image_number">%1$s/%2$s</string>
+</resources>
