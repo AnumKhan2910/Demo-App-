@@ -12,13 +12,20 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.demoapp.R
+import com.example.demoapp.databinding.ItemProductBinding
+import com.example.demoapp.databinding.ItemProductImageBinding
 
 
 class ProductImageAdapter(private var context: Context, private var items: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_product_image, parent, false)
-        return ImageViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val imageBinding: ItemProductImageBinding = ItemProductImageBinding.inflate(
+            layoutInflater,
+            parent,
+            false
+        )
+        return ImageViewHolder(imageBinding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -38,9 +45,9 @@ class ProductImageAdapter(private var context: Context, private var items: List<
     }
 
 
-    class ImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imageView : ImageView = view.findViewById(R.id.imageView)
-        val imageNumber : TextView = view.findViewById(R.id.imageNumber)
+    class ImageViewHolder(imageBinding: ItemProductImageBinding) : RecyclerView.ViewHolder(imageBinding.root) {
+        val imageView : ImageView = imageBinding.imageView
+        val imageNumber : TextView = imageBinding.imageNumber
     }
 
 

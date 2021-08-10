@@ -2,7 +2,6 @@ package com.example.demoapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.demoapp.R
+import com.example.demoapp.databinding.ItemProductBinding
 import com.example.demoapp.entity.Product
 import com.example.demoapp.listener.ItemClickListener
 
@@ -21,8 +21,13 @@ class ProductListAdapter(private var context: Context,
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
-        return ProductViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val productBinding: ItemProductBinding = ItemProductBinding.inflate(
+            layoutInflater,
+            parent,
+            false
+        )
+        return ProductViewHolder(productBinding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -45,12 +50,13 @@ class ProductListAdapter(private var context: Context,
         }
     }
 
-    class ProductViewHolder(view : View) : RecyclerView.ViewHolder(view){
-        val view : ConstraintLayout = view.findViewById(R.id.product_view)
-        val title: TextView = view.findViewById(R.id.titleText)
-        val subTitle : TextView = view.findViewById(R.id.subTitleText)
-        val price: TextView = view.findViewById(R.id.priceText)
-        val imageView : ImageView = view.findViewById(R.id.imageView)
+    class ProductViewHolder(productBinding: ItemProductBinding) :
+        RecyclerView.ViewHolder(productBinding.root) {
+        val view : ConstraintLayout = productBinding.productView
+        val title: TextView = productBinding.titleText
+        val subTitle : TextView = productBinding.subTitleText
+        val price: TextView = productBinding.priceText
+        val imageView : ImageView = productBinding.imageView
     }
 
 
