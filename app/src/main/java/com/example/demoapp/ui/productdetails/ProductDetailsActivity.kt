@@ -3,10 +3,10 @@ package com.example.demoapp.ui.productdetails
 import android.app.ProgressDialog
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.text.Html
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.demoapp.R
 import com.example.demoapp.adapter.ProductImageAdapter
@@ -52,7 +52,8 @@ class ProductDetailsActivity : AppCompatActivity() {
             binding.titleText.text = it.name
             binding.subTitleText.text = it.brandName
             binding.priceText.text = String.format(resources.getString(R.string.text_amount), it.salePrice)
-            binding.descriptionText.text = Html.fromHtml(it.info[0].description)
+            binding.descriptionText.text = HtmlCompat.fromHtml(it.info[0].description,
+                HtmlCompat.FROM_HTML_MODE_LEGACY)
 
             val adapter = ProductImageAdapter(this, it.images)
             binding.listView.setHasFixedSize(true)
